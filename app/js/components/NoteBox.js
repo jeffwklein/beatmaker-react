@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
-const soundMap = {
-}
-
 const PAUSE_MS_BEFORE_PLAYING = 200
 
 export class NoteBox extends Component {
@@ -18,16 +15,21 @@ export class NoteBox extends Component {
     const { isPlaying } = this.props.store
     const willPlay = nextProps.store.isPlaying
     if (!isPlaying && willPlay) {
-      setTimeout(this.play, this.props.offset + PAUSE_MS_BEFORE_PLAYING)
+      this.playClicked = true
+      setTimeout(() => this.play(nextProps.store.playID), this.props.offset + PAUSE_MS_BEFORE_PLAYING)
     }
   }
 
-  play() {
-    const { milliseconds, isPlaying, subdivisions } = this.props.store
-    this.refs.box.className = this.props.selected ? 'rowItem__selected__playing' : 'rowItem__playing'
-    setTimeout(() => this.refs.box.className = this.props.selected ? 'rowItem__selected' : 'rowItem', milliseconds)
-    if (isPlaying) {
-      setTimeout(this.play, milliseconds * subdivisions)
+  play(id) {
+    const { milliseconds, isPlaying, subdivisions, playID } = this.props.store
+    if (isPlaying && playID && id === playID) {
+      //PLAY SOUND
+      // change the color right away
+      this.refs.box.className = this.props.selected ? 'rowItem__selected__playing' : 'rowItem__playing'
+      // then change it back in a second
+      setTimeout(() => this.refs.box.className = this.props.selected ? 'rowItem__selected' : 'rowItem', milliseconds)
+      // call this again in one cycle
+      setTimeout(() => this.play(id), milliseconds * subdivisions)
     }
   }
 

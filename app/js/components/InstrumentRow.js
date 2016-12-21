@@ -7,6 +7,7 @@ import NoteBox from './NoteBox'
 export class InstrumentRow extends Component {
   constructor() {
     super()
+    // default values
     this.state = {
     }
   }
@@ -27,6 +28,7 @@ export class InstrumentRow extends Component {
                 sound={sound}
                 rowNumber={rowNumber}
                 colNumber={i}
+                onPlay={()=>{}}
                 key={i} 
               />
           )

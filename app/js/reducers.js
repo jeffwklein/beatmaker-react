@@ -1,7 +1,9 @@
 import _ from 'lodash'
+import uuid from 'uuid/v4'
 
 export default (state = {
   isPlaying: false,
+  playID: null,
   // beats per minute
   bpm: DEFAULT_BPM,
   // milliseconds per subdivision (always related to bpm)
@@ -13,9 +15,11 @@ export default (state = {
 }, action) => {
   switch (action.type) {
     case 'TOGGLE_PLAYING':
-      console.log('isPlaying:', !state.isPlaying)
+      const newPlayState = !state.isPlaying
+      const newPlayID = newPlayState ? uuid() : null
       return {...state,
-        isPlaying: !state.isPlaying
+        isPlaying: newPlayState,
+        playID: newPlayID
       }
     case 'UPDATE_BPM':
       const isValidBpm = (b) => b >= 40 && b <= 240 ? b : DEFAULT_BPM

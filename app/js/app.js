@@ -7,14 +7,12 @@ import BeatTable from './components/BeatTable'
 export class App extends Component {
   constructor() {
     super()
-    this.state = {
-      selectedIndex: 0,
-    }
+    console.log(window.AudioContext || window.webkitAudioContext)
   }
 
   render() {
     //const { }  = this.state
-    //const { }  = this.props.store
+    const { isPlaying }  = this.props.store
     return (
       <div className='app'>
         {
@@ -24,7 +22,7 @@ export class App extends Component {
           //<CountSelector/>
         }
         <div className='playButton' onClick={this.props.togglePlaying}>
-          Play
+          { isPlaying ? 'Stop' : 'Play' }
         </div>
         <BeatTable/>
       </div>

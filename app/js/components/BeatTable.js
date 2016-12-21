@@ -15,9 +15,8 @@ export class BeatTable extends Component {
   }
 
   render() {
-    //const { }  = this.state
+    //const { } = this.state
     const { instrumentRows } = this.props.store
-    console.log('instrumentRows', instrumentRows)
     return (
       <div className='beatTable'>
         {
