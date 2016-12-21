@@ -58,7 +58,7 @@ const SOUNDS = [
 const bpmToMilliseconds = (bpm) => (60000.0 / bpm) / 4.0
 
 // start at 120 beats per minute
-const DEFAULT_BPM = 80.0
+const DEFAULT_BPM = 100.0
 const DEFAULT_MILLISECONDS = bpmToMilliseconds(DEFAULT_BPM)
 
 

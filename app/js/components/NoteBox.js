@@ -23,7 +23,13 @@ export class NoteBox extends Component {
   play(id) {
     const { milliseconds, isPlaying, subdivisions, playID } = this.props.store
     if (isPlaying && playID && id === playID) {
-      //PLAY SOUND
+      if (this.props.selected) {
+        // PLAY SOUND
+        this.props.onPlay()
+        this.refs.box.className = 'rowItem__selected__playing'
+      } else {
+        this.refs.box.className = 'rowItem__playing'
+      }
       // change the color right away
       this.refs.box.className = this.props.selected ? 'rowItem__selected__playing' : 'rowItem__playing'
       // then change it back in a second

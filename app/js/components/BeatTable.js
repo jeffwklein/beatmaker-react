@@ -6,12 +6,7 @@ import InstrumentRow from './InstrumentRow'
 export class BeatTable extends Component {
   constructor() {
     super()
-    this.state = {
-    }
-    this.startLoop = this.startLoop.bind(this)
-  }
-
-  startLoop() {
+    this.state = {}
   }
 
   render() {

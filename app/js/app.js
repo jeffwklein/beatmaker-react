@@ -7,7 +7,7 @@ import BeatTable from './components/BeatTable'
 export class App extends Component {
   constructor() {
     super()
-    console.log(window.AudioContext || window.webkitAudioContext)
+    //console.log(window.AudioContext || window.webkitAudioContext)
   }
 
   render() {

@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import kickSound from './sounds/kick.mp3'
+import snareSound from './sounds/snare2.mp3'
 
 import NoteBox from './NoteBox'
+
+const soundMap = {
+  kick: kickSound,
+  snare: snareSound
+}
 
 export class InstrumentRow extends Component {
   constructor() {
     super()
     // default values
-    this.state = {
-    }
+  }
+  componentDidMount() {
+    this.sound = new Audio(soundMap[this.props.sound])
   }
 
   render() {
@@ -28,7 +36,7 @@ export class InstrumentRow extends Component {
                 sound={sound}
                 rowNumber={rowNumber}
                 colNumber={i}
-                onPlay={()=>{}}
+                onPlay={() => this.sound.play()}
                 key={i} 
               />
           )
