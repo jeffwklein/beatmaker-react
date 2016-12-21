@@ -1,0 +1,6 @@
+node_modules
+
+dist/bundle.js
+
+# all swap files
+*.swp

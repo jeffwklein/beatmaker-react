@@ -1,0 +1,106 @@
+// defined colors
+//$app-background: #fff;
+$app-background: #cee;
+
+// boxes
+$box-color-deselected: #9bb;
+$box-color-deselected-hover: #799;
+$box-color-selected: #355;
+$box-color-selected-hover: #466;
+$box-color-text: #022;
+
+$box-color-deselected-playing: #48a;
+$box-color-selected-playing: #fff;
+
+@import 'normalize';
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html body {
+  height: 100%;
+  margin: 0;
+  user-select: none;
+  background-color: $app-background;
+}
+
+div.app {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  div.playButton {
+    display: flex;
+    margin: 10px auto;
+    width: 30vw;
+    padding: 10px 5px;
+    color: $box-color-text;
+    background-color: $box-color-deselected;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+    &:hover {
+      background-color: $box-color-deselected-hover;
+    }
+  }
+
+  div.beatTable {
+    display: flex;
+    margin: 0 auto;
+    width: 96vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div.row {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+
+      div.rowItem {
+        margin: 0.4vw;
+        min-height: 4vw;
+        min-width: 4vw;
+        background-color: $box-color-deselected;
+        cursor: pointer;
+        transition: background-color 0.1s ease-out;
+        &:hover {
+          background-color: $box-color-deselected-hover;
+        }
+      }
+      div.rowItem__selected {
+        @extend div.rowItem;
+        background-color: $box-color-selected;
+        &:hover {
+          background-color: $box-color-selected-hover;
+        }
+      }
+      div.rowItem__playing {
+        @extend div.rowItem;
+        background-color: $box-color-deselected-playing;
+        &:hover {
+          background-color: $box-color-deselected-playing;
+        }
+      }
+      div.rowItem__selected__playing {
+        @extend div.rowItem;
+        background-color: $box-color-selected-playing;
+        &:hover {
+          background-color: $box-color-selected-playing;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
