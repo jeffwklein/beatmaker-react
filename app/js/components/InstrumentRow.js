@@ -37,6 +37,10 @@ export class InstrumentRow extends Component {
                 rowNumber={rowNumber}
                 colNumber={i}
                 onPlay={() => this.sound.play()}
+                onStop={() => {
+                  this.sound.pause()
+                  this.sound.currentTime = 0
+                }}
                 key={i} 
               />
           )

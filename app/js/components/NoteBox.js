@@ -22,21 +22,24 @@ export class NoteBox extends Component {
 
   play(id) {
     const { milliseconds, isPlaying, subdivisions, playID } = this.props.store
-    if (isPlaying && playID && id === playID) {
-      if (this.props.selected) {
-        // PLAY SOUND
-        this.props.onPlay()
-        this.refs.box.className = 'rowItem__selected__playing'
-      } else {
-        this.refs.box.className = 'rowItem__playing'
-      }
-      // change the color right away
-      this.refs.box.className = this.props.selected ? 'rowItem__selected__playing' : 'rowItem__playing'
-      // then change it back in a second
-      setTimeout(() => this.refs.box.className = this.props.selected ? 'rowItem__selected' : 'rowItem', milliseconds)
-      // call this again in one cycle
-      setTimeout(() => this.play(id), milliseconds * subdivisions)
+    if (!isPlaying || !playID || id !== playID) {
+      return
     }
+    if (this.props.selected) {
+      // PLAY SOUND
+      this.props.onPlay()
+      this.refs.box.className = 'rowItem__selected__playing'
+      // stop it so next sound can play
+      setTimeout(() => this.props.onStop(), milliseconds - 10)
+    } else {
+      this.refs.box.className = 'rowItem__playing'
+    }
+    // change the color right away
+    this.refs.box.className = this.props.selected ? 'rowItem__selected__playing' : 'rowItem__playing'
+    // then change it back after interval
+    setTimeout(() => this.refs.box.className = this.props.selected ? 'rowItem__selected' : 'rowItem', milliseconds)
+    // call this again in one cycle
+    setTimeout(() => this.play(id), milliseconds * subdivisions)
   }
 
   render() {
